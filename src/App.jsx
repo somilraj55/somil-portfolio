@@ -53,20 +53,46 @@ function SectionLabel({ number, children }) {
   )
 }
 
+
 function ProjectPreview({ type }) {
+  const base = import.meta.env.BASE_URL;
+
   const previews = {
-    mac: { src: '/projects/mac-os.png', alt: 'Somil OS Mac-style portfolio screenshot' },
-    cake: { src: '/projects/paras-bakery.png', alt: 'PARAS Bakery website screenshot' },
-    dash: { src: '/projects/productivity-dashboard.png', alt: 'Productivity Dashboard made with HTML, CSS and JavaScript' },
-  }
-  const preview = previews[type]
+    mac: {
+      src: `${base}projects/mac-os.png`,
+      alt: 'Somil OS Mac-style portfolio screenshot',
+    },
+    cake: {
+      src: `${base}projects/paras-bakery.png`,
+      alt: 'PARAS Bakery website screenshot',
+    },
+    dash: {
+      src: `${base}projects/productivity-dashboard.png`,
+      alt: 'Productivity Dashboard made with HTML, CSS and JavaScript',
+    },
+  };
+
+  const preview = previews[type];
+
+  if (!preview) return null;
+
   return (
     <div className="project-image-wrap relative h-full min-h-56 overflow-hidden bg-[#17171b]">
-      <img src={preview.src} alt={preview.alt} className="h-full min-h-56 w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]" loading="lazy" />
+      <img
+        src={preview.src}
+        alt={preview.alt}
+        className="h-full min-h-56 w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+        loading="lazy"
+        onError={(e) => {
+          console.error('Project image failed to load:', preview.src);
+        }}
+      />
+
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
     </div>
-  )
+  );
 }
+
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
