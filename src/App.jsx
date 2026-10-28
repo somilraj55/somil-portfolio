@@ -145,7 +145,12 @@ function App() {
               <div className="absolute -inset-3 rounded-[2rem] bg-lime/10 blur-2xl" />
               <div className="absolute -inset-3 rounded-[2rem] border border-lime/20" />
               <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-panel p-2 shadow-glow">
-                <img src="/images/profile-photo.jpeg" alt="Somil Barnwal" className="aspect-[4/5] w-full rounded-[1.1rem] object-cover object-center" loading="lazy" />
+                <img
+                  src={`${import.meta.env.BASE_URL}images/profile-photo.jpeg`}
+                  alt="Somil Barnwal"
+                  className="aspect-[4/5] w-full rounded-[1.1rem] object-cover object-center"
+                  loading="lazy"
+                />
                 <div className="absolute inset-x-2 bottom-2 rounded-b-[1.1rem] bg-gradient-to-t from-black/90 via-black/55 to-transparent px-5 pb-5 pt-14">
                   <p className="text-xl font-bold text-white">Somil Barnwal</p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-lime">Frontend Developer · Learner</p>
