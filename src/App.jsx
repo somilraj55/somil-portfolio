@@ -217,10 +217,30 @@ function App() {
           <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Learning, validated<span className="text-lime">.</span></h2><p className="max-w-sm text-sm leading-6 text-zinc-500">Courses and recognition that reflect my ongoing learning journey.</p></div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: 'Introduction to HTML', issuer: 'SoloLearn', image: '/certificates/html-certificate.jpg', alt: 'SoloLearn Introduction to HTML course certificate' },
-              { title: 'Introduction to CSS', issuer: 'SoloLearn', image: '/certificates/css-certificate.jpg', alt: 'SoloLearn Introduction to CSS course certificate' },
-              { title: 'Introduction to JavaScript', issuer: 'SoloLearn', image: '/certificates/javascript-certificate.jpg', alt: 'SoloLearn Introduction to JavaScript course certificate' },
-              { title: 'College Ambassador', issuer: 'Techfest, IIT Bombay', image: '/certificates/techfest-iit-bombay.jpg', alt: 'Techfest IIT Bombay College Ambassador certificate of appreciation' },
+              {
+                title: 'Introduction to HTML',
+                issuer: 'SoloLearn',
+                image: `${import.meta.env.BASE_URL}certificates/html-certificate.jpg`,
+                alt: 'SoloLearn Introduction to HTML course certificate',
+              },
+              {
+                title: 'Introduction to CSS',
+                issuer: 'SoloLearn',
+                image: `${import.meta.env.BASE_URL}certificates/css-certificate.jpg`,
+                alt: 'SoloLearn Introduction to CSS course certificate',
+              },
+              {
+                title: 'Introduction to JavaScript',
+                issuer: 'SoloLearn',
+                image: `${import.meta.env.BASE_URL}certificates/javascript-certificate.jpg`,
+                alt: 'SoloLearn Introduction to JavaScript course certificate',
+              },
+              {
+                title: 'College Ambassador',
+                issuer: 'Techfest, IIT Bombay',
+                image: `${import.meta.env.BASE_URL}certificates/techfest-iit-bombay.jpg`,
+                alt: 'Techfest IIT Bombay College Ambassador certificate',
+              },
             ].map((certificate) => <article key={certificate.title} className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-panel transition hover:-translate-y-1 hover:border-lime/30">
               <a href={certificate.image} target="_blank" rel="noreferrer" aria-label={`View ${certificate.title} certificate in full size`} className="block overflow-hidden bg-white">
                 <img src={certificate.image} alt={certificate.alt} loading="lazy" className="h-44 w-full object-contain p-2 transition duration-300 group-hover:scale-[1.02]" />
