@@ -212,7 +212,7 @@ function App() {
           </div>
         </section>
 
-        ```jsx
+        
 <section
   id="certificates"
   className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-24"
