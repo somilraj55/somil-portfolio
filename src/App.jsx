@@ -212,43 +212,122 @@ function App() {
           </div>
         </section>
 
-        <section id="certificates" className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-24">
-          <SectionLabel number="04">Certificates & recognition</SectionLabel>
-          <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Learning, validated<span className="text-lime">.</span></h2><p className="max-w-sm text-sm leading-6 text-zinc-500">Courses and recognition that reflect my ongoing learning journey.</p></div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: 'Introduction to HTML',
-                issuer: 'SoloLearn',
-                image: `${import.meta.env.BASE_URL}certificates/html-certificate.jpg`,
-                alt: 'SoloLearn Introduction to HTML course certificate',
-              },
-              {
-                title: 'Introduction to CSS',
-                issuer: 'SoloLearn',
-                image: `${import.meta.env.BASE_URL}certificates/css-certificate.jpg`,
-                alt: 'SoloLearn Introduction to CSS course certificate',
-              },
-              {
-                title: 'Introduction to JavaScript',
-                issuer: 'SoloLearn',
-                image: `${import.meta.env.BASE_URL}certificates/javascript-certificate.jpg`,
-                alt: 'SoloLearn Introduction to JavaScript course certificate',
-              },
-              {
-                title: 'College Ambassador',
-                issuer: 'Techfest, IIT Bombay',
-                image: `${import.meta.env.BASE_URL}certificates/techfest-iit-bombay.jpg`,
-                alt: 'Techfest IIT Bombay College Ambassador certificate',
-              },
-            ].map((certificate) => <article key={certificate.title} className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-panel transition hover:-translate-y-1 hover:border-lime/30">
-              <a href={certificate.image} target="_blank" rel="noreferrer" aria-label={`View ${certificate.title} certificate in full size`} className="block overflow-hidden bg-white">
-                <img src={certificate.image} alt={certificate.alt} loading="lazy" className="h-44 w-full object-contain p-2 transition duration-300 group-hover:scale-[1.02]" />
-              </a>
-              <div className="p-4"><div className="mb-3 flex items-center gap-2 text-lime"><Award size={16} /><span className="font-mono text-[9px] uppercase tracking-[0.15em]">Certificate</span></div><h3 className="font-bold leading-snug">{certificate.title}</h3><p className="mt-2 text-sm text-zinc-500">{certificate.issuer}</p><a href={certificate.image} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-300 transition hover:text-lime">View certificate <ExternalLink size={12} /></a></div>
-            </article>)}
+        ```jsx
+<section
+  id="certificates"
+  className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-24"
+>
+  <SectionLabel number="04">Certificates & Recognition</SectionLabel>
+
+  <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+    <div>
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        Learning, validated
+        <span className="text-lime">.</span>
+      </h2>
+
+      <p className="mt-3 max-w-md text-sm leading-6 text-zinc-500">
+        Certificates that showcase my learning journey and commitment to
+        improving my frontend development skills.
+      </p>
+    </div>
+
+    <span className="font-mono text-xs text-zinc-500">
+      04 CERTIFICATES
+    </span>
+  </div>
+
+  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {[
+      {
+        title: "Introduction to HTML",
+        issuer: "SoloLearn",
+        image: "html-certificate.jpg",
+        alt: "SoloLearn HTML certificate",
+      },
+      {
+        title: "Introduction to CSS",
+        issuer: "SoloLearn",
+        image: "css-certificate.jpg",
+        alt: "SoloLearn CSS certificate",
+      },
+      {
+        title: "Introduction to JavaScript",
+        issuer: "SoloLearn",
+        image: "javascript-certificate.jpg",
+        alt: "SoloLearn JavaScript certificate",
+      },
+      {
+        title: "College Ambassador",
+        issuer: "Techfest, IIT Bombay",
+        image: "techfest-iit-bombay.jpg",
+        alt: "Techfest IIT Bombay College Ambassador certificate",
+      },
+    ].map((certificate) => {
+      const certificatePath = `${
+        import.meta.env.BASE_URL
+      }certificates/${certificate.image}`;
+
+      return (
+        <article
+          key={certificate.title}
+          className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-panel transition duration-300 hover:-translate-y-1 hover:border-lime/40"
+        >
+          {/* Certificate image */}
+          <a
+            href={certificatePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${certificate.title} certificate`}
+            className="flex h-52 items-center justify-center overflow-hidden bg-white p-3"
+          >
+            <img
+              src={certificatePath}
+              alt={certificate.alt}
+              loading="lazy"
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+                event.currentTarget.parentElement.innerHTML =
+                  '<p style="color:#52525b;font-size:13px;text-align:center;padding:12px">Certificate image not found. Please check the image filename.</p>';
+              }}
+              className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.03]"
+            />
+          </a>
+
+          {/* Certificate details */}
+          <div className="p-5">
+            <div className="mb-3 flex items-center gap-2 text-lime">
+              <Award size={17} />
+
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em]">
+                Certificate
+              </span>
+            </div>
+
+            <h3 className="min-h-12 font-bold leading-snug text-white">
+              {certificate.title}
+            </h3>
+
+            <p className="mt-2 text-sm text-zinc-500">
+              {certificate.issuer}
+            </p>
+
+            <a
+              href={certificatePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 transition hover:text-lime"
+            >
+              View certificate
+              <ExternalLink size={14} />
+            </a>
           </div>
-        </section>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
 
         <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-24">
           <div className="grid gap-10 rounded-3xl border border-lime/15 bg-gradient-to-br from-lime/[0.08] to-transparent p-6 sm:p-10 md:grid-cols-[1fr_auto] md:items-center md:p-12">
